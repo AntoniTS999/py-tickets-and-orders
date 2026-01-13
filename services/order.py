@@ -15,10 +15,10 @@ def create_order(tickets: list[dict], username: str, date: str = None) -> list:
     )
     if date:
         if isinstance(date, str):
-            order.created_at = datetime.strptime(date, "%Y-%m-%d %H:%M")
+            Order.objects.update(
+                created_at=datetime.strptime(date, "%Y-%m-%d %H:%M"))
         else:
-            order.created_at = date
-    order.save()
+            Order.objects.update(created_at=date)
 
     tickets_created = []
     for ticket in tickets:
